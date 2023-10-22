@@ -3,7 +3,7 @@ let counter = 0; // Initialise counter variable
 let startMillis; // Initialise start time variable
 
 // Game variables
-let polyphemusHealth = 400; // Initial health value for Polyphemus
+let polyphemusHealth = 500; // Initial health value for Polyphemus
 let odysseusHealth = 3; // Initial health value for Odysseus
 let bulletNum = 100; // Initial number of bullets
 let bulletDelay = 10; // Value to set the delay between bullets
@@ -463,7 +463,7 @@ function draw() {
   }
 
   // Draw Polyphemus' health bar
-  let healthBar = map(polyphemusHealth, 0, 400, 0, width / 4);
+  let healthBar = map(polyphemusHealth, 0, 500, 0, width / 4);
   // Map Polyphemus' health value to the width of the health bar
   // and assign to healthBar variable
 
@@ -528,9 +528,9 @@ function draw() {
     powerUps[i].show();
     powerUps[i].update();
 
-    // If the player hits a power up, add 40 bullets to bulletNum
+    // If the player hits a power up, add 50 bullets to bulletNum
     if (odysseus.hits(powerUps[i])) {
-      bulletNum += 40;
+      bulletNum += 50;
       powerUps.splice(i, 1); // Remove the power up from the array
     }
   }
@@ -723,7 +723,7 @@ function keyPressed() {
     obstacles = [];
     powerUps = [];
     odysseus = new Player();
-    polyphemusHealth = 400;
+    polyphemusHealth = 500;
     odysseusHealth = 3;
     irisSize = eyeW / 8;
     pupilSize = irisSize / 2;
