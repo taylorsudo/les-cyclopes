@@ -737,7 +737,7 @@ function keyPressed() {
   } else if (keyCode === 32 && !gameWon) {
     shooting = true;
   // If game is won, reset the counter for the end cutscene
-  } else if (gameWon && counter > 22500) {
+  } else if (gameWon) {
     counter = 0;
     startMillis = millis();
   }
