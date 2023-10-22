@@ -444,7 +444,7 @@ function draw() {
       // Display instructions for movement and shooting controls
       textSize(height / 30);
       text(
-        "Press left and right keys to move,\nspacebar to shoot",
+        "Press left and right keys to move,\nhold spacebar to shoot",
         width / 2,
         height / 1.9
       );
