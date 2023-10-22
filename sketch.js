@@ -530,7 +530,7 @@ function draw() {
 
     // If the player hits a power up, add 50 bullets to bulletNum
     if (odysseus.hits(powerUps[i])) {
-      bulletNum += 50;
+      bulletNum += 25;
       powerUps.splice(i, 1); // Remove the power up from the array
     }
   }
