@@ -558,7 +558,7 @@ function draw() {
 
   // If Polyphemus' health reaches 0, set gameWon to true,
   // stop the music and display end cutscene
-  if (polyphemusHealth == 0) {
+  if (polyphemusHealth == 499) {
     gameWon = true;
     music.stop();
     obstacles = []; // Clear obstacles array
@@ -739,13 +739,7 @@ function keyPressed() {
   // If game is won, reset the counter for the end cutscene
   } else if (gameWon) {
     counter = 0;
-    startMillis = millis();
   }
-}
-
-if (shooting == true && gameWon) {
-  counter = 0;
-  startMillis = millis();
 }
 
 // Function to handle key releases
