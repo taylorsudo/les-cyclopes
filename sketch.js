@@ -736,10 +736,6 @@ function keyPressed() {
   // If spacebar is pressed and game is not yet won, shoot a bullet
   } else if (keyCode === 32 && !gameWon) {
     shooting = true;
-  // If game is won, reset the counter for the end cutscene
-  } else if (gameWon && counter >= 22500) {
-    counter = 0;
-    startMillis = millis();
   }
 }
 
@@ -753,6 +749,12 @@ function keyReleased() {
   if (keyCode === 32) {
     shooting = false;
   }
+}
+
+// If game is won, reset the counter for the end cutscene
+if (gameWon) {
+  counter = 0;
+  startMillis = millis();
 }
 
 // Teardrop shape adapted from "rain+ water droplet" by zygugi
