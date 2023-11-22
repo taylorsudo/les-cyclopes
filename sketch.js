@@ -558,7 +558,7 @@ function draw() {
 
   // If Polyphemus' health reaches 0, set gameWon to true,
   // stop the music and display end cutscene
-  if (polyphemusHealth == 499) {
+  if (polyphemusHealth == 0) {
     gameWon = true;
     music.stop();
     obstacles = []; // Clear obstacles array
