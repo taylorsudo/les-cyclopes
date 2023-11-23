@@ -21,8 +21,8 @@ let gameWon = false; // Flag to indicate if the game is won
 let blink = 3;
 // Initial y-coordinate for first and second control points of eyelid Bézier vertex
 let fadeOut = 0; // Initial alpha value of fade out background colour
-let canvasWidth, canvasHeight, music, slideIn;
-// Variables for canvas dimensions, music, and slide-in effect
+let canvasWidth, canvasHeight, music, wonTime, slideIn;
+// Variables for canvas dimensions, music, win time, and slide-in effect
 let eyeX, eyeY, eyeW, eyeH, eyeSpeechX, eyeSpeechY;
 // Variables for eye position and Polyphemus' dialogue position
 let irisX, irisY, irisSize, pupilSize, irisShakeTimer;
@@ -556,10 +556,10 @@ function draw() {
     noLoop();
   }
 
-  // If Polyphemus' health reaches 0, set gameWon to true,
-  // stop the music and display end cutscene
-  if (polyphemusHealth == 0) {
-    gameWon = true;
+  checkGameWon();
+
+  // If game is won, stop the music and display end cutscene
+  if (gameWon == true) {
     music.stop();
     obstacles = []; // Clear obstacles array
     powerUps = []; // Clear power ups array
@@ -592,7 +592,7 @@ function draw() {
 
     // Gradually increment slideIn if counter is greater than 4000 milliseconds
     // and slideIn value is less than a fifth of the canvas width
-    if (counter >= 4000) {
+    if (counter >= wonTime + 4000) {
       if (slideIn <= width / 5) {
         slideIn += width * 0.005;
       }
@@ -621,7 +621,7 @@ function draw() {
     // If counter reaches 7500, display second eye's line
     // by randomly increasing the currentCharacter3 value
     // to gradually reveal more characters of string3
-    if (counter >= 7500) {
+    if (counter >= wonTime + 7500) {
       currentCharacter3 += random(0, 0.25);
     }
 
@@ -646,7 +646,7 @@ function draw() {
     // If counter reaches 12500, display Polyphemus' line
     // by randomly increasing the currentCharacter4 value
     // to gradually reveal more characters of string4
-    if (counter >= 12500) {
+    if (counter >= wonTime + 12500) {
       // Increment currentCharacter4 at random rate
       currentCharacter4 += random(0, 0.1);
     }
@@ -662,13 +662,13 @@ function draw() {
     // If counter reaches 17500, display final line
     // by randomly increasing the currentCharacter5 value
     // to gradually reveal more characters of string5
-    if (counter >= 17500) {
+    if (counter >= wonTime + 17500) {
       currentCharacter5 += random(0, 0.1);
     }
 
     // If counter reaches 22500, increment fadeOut variable by one
     // to increase the alpha value until it reaches 255
-    if (counter >= 22500 && fadeOut <= 255) {
+    if (counter >= wonTime + 22500 && fadeOut <= 255) {
       fadeOut++;
     }
   }
@@ -751,10 +751,12 @@ function keyReleased() {
   }
 }
 
-// If game is won, reset the counter for the end cutscene
-if (gameWon) {
-  counter = 0;
-  startMillis = millis();
+// Function to check if game has been won
+function checkGameWon() {
+  if (polyphemusHealth <= 0 && !gameWon) {
+    gameWon = true;
+    wonTime = millis(); // Log the time when the game was won
+  }
 }
 
 // Teardrop shape adapted from "rain+ water droplet" by zygugi
