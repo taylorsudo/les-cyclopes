@@ -755,7 +755,7 @@ function keyReleased() {
 function checkGameWon() {
   if (polyphemusHealth <= 0 && !gameWon) {
     gameWon = true;
-    wonTime = millis(); // Log the time when the game was won
+    wonTime = counter; // Log the time when the game was won
   }
 }
 
